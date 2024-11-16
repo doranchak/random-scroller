@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+        }
+        .name {
+            position: absolute;
+            white-space: nowrap;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const namePool = [
+"Also rides up to there",
+"Are sure the pilots do",
+"Art Shields to europe",
+"Arthur lies to depose",
+"Arthur speed lies too",
+"As other replied to us",
+"Desolator is up there",
+"Due to the prior sales",
+"He surprised too late",
+"He ties to Paul Doerrs",
+"Here is a loud protest",
+"I also set up the order",
+"I also used the report",
+"I load to the pressure",
+"I speed to lose Arthur",
+"I told us theres a rope",
+"Is the root pleasured?",
+"I’d others to pleasure",
+"Lead to the superiors",
+"Leads to the superior",
+"Lies to depose Arthur",
+"Lois spread out there",
+"Lost due to his reaper",
+"Operate its shoulder",
+"Or also the super edit",
+"Or do I put sales there",
+"Or praise the loudest",
+"Or the lead up stories",
+"Or the super isolated",
+"Or to the displeasure",
+"PS I read the rules too",
+"Paul Doerr ties those",
+"Please do this router",
+"Poor idea there, sluts",
+"Proud to release this",
+"Read out the spoilers",
+"Read the spoilers to u",
+"Repair due to the loss",
+"Results i dare to hope",
+"Said let us three poor",
+"See to this Paul Doerr",
+"Shout posted earlier",
+"So loud parties there",
+"Spare out the soldier",
+"Spear the soldier out",
+"Spoiled to see Arthur",
+"Sure it helps read too",
+"Sure to spread the oil",
+"The lore is spread out",
+"The poor results idea",
+"The rules are stoopid",
+"Their pleasures to do",
+"Theodore is past rule",
+"Theodore is pure last",
+"Those louder parties",
+"Tiers should operate",
+"To do their pleasures",
+"To drop the real issue",
+"To other displeasure",
+"To the louder praises",
+"Toot her displeasure",
+"Tried to use real hops",
+"Up so the order is late",
+"Upload stories there",
+"Upload three stories ",
+"Upset at soldier hero",
+"Us to praise thee lord",
+"Use theirs to preload",
+"Use these old airport",
+"Used the repair tools"
+        ];
+        class ScrollingName {
+            constructor() {
+                this.element = document.createElement('div');
+                this.element.className = 'name';
+                this.reset();
+                document.body.appendChild(this.element);
+            }
+
+            reset() {
+                // Random size between 12 and 48 pixels
+                this.size = Math.random() * 36 + 12;
+                
+                // Speed inversely proportional to size (bigger = slower)
+                this.speed = (Math.random() * 2 + 1) * (30 / this.size);
+                
+                // Opacity based on size (bigger = more transparent)
+                const opacity = 1 - (this.size - 12) / 36;
+                
+                this.element.style.fontSize = `${this.size}px`;
+                this.element.style.opacity = opacity;
+                
+                // Random vertical position
+                this.element.style.top = `${Math.random() * (window.innerHeight - this.size)}px`;
+                
+                // Start from right side
+                this.x = window.innerWidth;
+                this.element.style.left = `${this.x}px`;
+                
+                // Random name from pool
+                this.element.textContent = namePool[Math.floor(Math.random() * namePool.length)];
+            }
+
+            move() {
+                this.x -= this.speed;
+                this.element.style.left = `${this.x}px`;
+                
+                // Reset when off screen
+                if (this.x < -this.element.offsetWidth) {
+                    this.reset();
+                }
+            }
+        }
+
+        // Create multiple scrolling names
+        const names = Array.from({ length: 50 }, () => new ScrollingName());
+
+        // Animation loop
+        function animate() {
+            names.forEach(name => name.move());
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
